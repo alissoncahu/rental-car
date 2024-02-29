@@ -21,7 +21,7 @@ public class CarController {
     private CarService carService;
 
     @PostMapping
-    public ResponseEntity<Car> createUser(@Valid @RequestBody CarDTO car){
+    public ResponseEntity<Car> createCar(@Valid @RequestBody CarDTO car){
 
         Car newCar = carService.createCar(car);
         return new ResponseEntity<>(newCar, HttpStatus.CREATED);
@@ -34,4 +34,12 @@ public class CarController {
         return new ResponseEntity<>(cars, HttpStatus.OK);
 
     }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Car> getCarById(@PathVariable Long id) throws Exception {
+        Car car = this.carService.findCarById(id);
+        return new ResponseEntity<>(car, HttpStatus.OK);
+
+    }
+
 }

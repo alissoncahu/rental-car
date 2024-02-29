@@ -24,8 +24,8 @@ public class LocationService {
     private LocationService locationService;
 
     public Location createLocation(LocationDTO location) throws Exception{
-        Car leaser = this.carService.findCarByLicensePlateCar(location.licensePlateCar());
-        User locator = this.userService.findUserByCpf(location.cpfLocator());
+        Car leaser = this.carService.findCarById(location.leaserId());
+        User locator = this.userService.findUserById(location.locatorId());
 
         Location newLocation = new Location();
         newLocation.setLocationStart(location.locationStart());

@@ -1,5 +1,6 @@
 package com.api.rentalcar.controllers;
 
+import com.api.rentalcar.domain.car.Car;
 import com.api.rentalcar.domain.user.User;
 import com.api.rentalcar.dtos.UserDTO;
 import com.api.rentalcar.services.UserService;
@@ -29,6 +30,13 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers(){
         List<User> users = this.userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
+
+    }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) throws Exception {
+        User user = this.userService.findUserById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
 
     }
 

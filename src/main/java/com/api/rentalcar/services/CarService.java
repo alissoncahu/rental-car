@@ -21,6 +21,10 @@ public class CarService {
         return this.repository.findCarByLicensePlateCar(licensePlateCar).orElseThrow(() -> new Exception("Carro não encontrado!"));
     }
 
+    public Car findCarById(Long id) throws Exception {
+        return this.repository.findCarById(id).orElseThrow(() -> new Exception("Carro não encontrado!"));
+    }
+
     public void saveCar(Car car) {
         this.repository.save(car);
     }
