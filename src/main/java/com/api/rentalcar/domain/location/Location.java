@@ -1,10 +1,11 @@
 package com.api.rentalcar.domain.location;
 
+import com.api.rentalcar.domain.car.Car;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -20,7 +21,11 @@ public class Location {
 
     private BigDecimal dailyRentalPrice;
 
-    private LocalDateTime locationStart;
+    private Date locationStart;
 
-    private LocalDateTime locationEnd;
+    private Date locationEnd;
+
+    @ManyToOne
+    private Car licensePlateCar;
+
 }

@@ -1,7 +1,7 @@
 package com.api.rentalcar.dtos;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
 
-public record LocationDTO(BigDecimal dailyRentalPrice, LocalDateTime locationStart, LocalDateTime locationEnd) {
+public record LocationDTO(BigDecimal dailyRentalPrice, Date locationStart, Date locationEnd) {
 }
