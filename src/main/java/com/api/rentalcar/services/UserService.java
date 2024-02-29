@@ -18,6 +18,10 @@ public class UserService {
         return this.repository.findById(id).orElseThrow(() -> new Exception("Usuário não encontrado!"));
     }
 
+    public User findUserByCpf(String cpf) throws Exception {
+        return this.repository.findUserByCpf(cpf).orElseThrow(() -> new Exception("Usuário não encontrado!"));
+    }
+
     public void saveUser(User user) {
         this.repository.save(user);
     }

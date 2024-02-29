@@ -2,7 +2,9 @@ package com.api.rentalcar.domain.user;
 
 import com.api.rentalcar.dtos.UserDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Getter
 @Setter
@@ -16,14 +18,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotBlank(message = "Primeiro nome é obrigatório")
     private String firstName;
 
     private String lastName;
 
     @Column(unique = true)
+    @CPF
+    @NotBlank(message = "CPF é obrigatório")
     private String cpf;
 
+    @NotBlank(message = "Email é obrigatório")
     @Column(unique = true)
     private String email;
 

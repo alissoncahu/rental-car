@@ -1,6 +1,7 @@
 package com.api.rentalcar.domain.location;
 
 import com.api.rentalcar.domain.car.Car;
+import com.api.rentalcar.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,13 +20,14 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private BigDecimal dailyRentalPrice;
-
     private Date locationStart;
 
     private Date locationEnd;
 
     @ManyToOne
-    private Car licensePlateCar;
+    private Car leased;
+
+    @ManyToOne
+    private User locator;
 
 }

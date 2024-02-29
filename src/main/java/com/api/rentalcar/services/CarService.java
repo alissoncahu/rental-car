@@ -8,6 +8,8 @@ import com.api.rentalcar.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CarService {
 
@@ -28,5 +30,9 @@ public class CarService {
         this.saveCar(newCar);
         return newCar;
 
+    }
+
+    public List<Car> getAllCars() {
+        return this.repository.findAll();
     }
 }
