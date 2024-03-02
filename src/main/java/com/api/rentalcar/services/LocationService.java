@@ -9,6 +9,8 @@ import com.api.rentalcar.repositories.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LocationService {
     @Autowired
@@ -23,9 +25,24 @@ public class LocationService {
     @Autowired
     private LocationService locationService;
 
+    public List<Location> getAllLocation(){
+        return this.repository.findAll();
+    }
+
+    public List<Location> getLocationByLicensePlateCar(Car leaser){
+        return this.repository.findLocationByLeased(leaser);
+    }
+
     public Location createLocation(LocationDTO location) throws Exception{
-        Car leaser = this.carService.findCarById(location.leaserId());
-        User locator = this.userService.findUserById(location.locatorId());
+        Car leaser = this.carService.findCarByLicensePlateCar(location.licensePlateCar());
+        User locator = this.userService.getUserByCpf(location.cpfLocator());
+
+        for(Location l : getLocationByLicensePlateCar(leaser)){
+            if(location.locationStart().compareTo(l.getLocationStart()) >= 0
+                    && location.locationStart().compareTo(l.getLocationEnd()) <= 0){
+                throw new Exception("Carro "+leaser.getBrandCar()+" "+leaser.getModelCar()+" de placa "+leaser.getLicensePlateCar()+" estará locado pelo usuário "+l.getLocator().getFirstName()+" "+l.getLocator().getLastName()+" neste período");
+            }
+        }
 
         Location newLocation = new Location();
         newLocation.setLocationStart(location.locationStart());
