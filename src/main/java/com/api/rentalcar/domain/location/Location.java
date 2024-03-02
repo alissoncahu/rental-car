@@ -25,11 +25,11 @@ public class Location {
     private Date locationEnd;
 
     @ManyToOne
-    @JoinColumn(name="leased_id")
+//    @JoinColumn(name="leased_id")
     private Car leased;
 
     @ManyToOne
-    @JoinColumn(name="locator_id")
+//    @JoinColumn(name="locator_id")
     private User locator;
 
 }

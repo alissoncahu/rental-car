@@ -6,5 +6,5 @@ import com.api.rentalcar.domain.user.User;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public record LocationDTO(Date locationStart, Date locationEnd, Long leaserId, Long locatorId) {
+public record LocationDTO(Date locationStart, Date locationEnd, String licensePlateCar, String cpfLocator) {
 }
