@@ -29,15 +29,21 @@ public class LocationService {
         return this.repository.findAll();
     }
 
-    public List<Location> getLocationByLicensePlateCar(Car leaser){
+    public List<Location> getLocationByLicensePlateCar(String licensePlateCar) throws Exception {
+        Car leaser = this.carService.getCarByLicensePlateCar(licensePlateCar);
         return this.repository.findLocationByLeased(leaser);
     }
 
+    public List<Location> getLocationByCpf(String cpf) throws Exception {
+        User locator = this.userService.getUserByCpf(cpf);
+        return this.repository.findLocationByLocator(locator);
+    }
+
     public Location createLocation(LocationDTO location) throws Exception{
-        Car leaser = this.carService.findCarByLicensePlateCar(location.licensePlateCar());
+        Car leaser = this.carService.getCarByLicensePlateCar(location.licensePlateCar());
         User locator = this.userService.getUserByCpf(location.cpfLocator());
 
-        for(Location l : getLocationByLicensePlateCar(leaser)){
+        for(Location l : getLocationByLicensePlateCar(location.licensePlateCar())){
             if(location.locationStart().compareTo(l.getLocationStart()) >= 0
                     && location.locationStart().compareTo(l.getLocationEnd()) <= 0){
                 throw new Exception("Carro "+leaser.getBrandCar()+" "+leaser.getModelCar()+" de placa "+leaser.getLicensePlateCar()+" estará locado pelo usuário "+l.getLocator().getFirstName()+" "+l.getLocator().getLastName()+" neste período");

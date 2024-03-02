@@ -34,26 +34,26 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{cpf}")
+    @GetMapping(path = "/cpf/{cpf}")
     public ResponseEntity<User> getUserByCpf(@PathVariable String cpf) throws Exception {
         User user = this.userService.getUserByCpf(cpf);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/id/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) throws Exception {
         User user = this.userService.getUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/{cpf}")
+    @DeleteMapping(path = "/cpf/{cpf}")
     public ResponseEntity<Object> deleteUserByCpf(@PathVariable String cpf) throws Exception {
         User user = this.userService.getUserByCpf(cpf);
         this.userService.delete(user);
         return ResponseEntity.status(HttpStatus.OK).body("Usuário excluído com sucesso");
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/id/{id}")
     public ResponseEntity<Object> deleteUserById(@PathVariable Long id) throws Exception {
         User user = this.userService.getUserById(id);
         this.userService.delete(user);

@@ -37,35 +37,35 @@ public class CarController {
         return new ResponseEntity<>(cars, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{licensePlateCar}")
+    @GetMapping(path = "/licensePlateCar/{licensePlateCar}")
     public ResponseEntity<Car> getCarByLicensePlateCar(@PathVariable String licensePlateCar) throws Exception {
-        Car car = this.carService.findCarByLicensePlateCar(licensePlateCar);
+        Car car = this.carService.getCarByLicensePlateCar(licensePlateCar);
         return new ResponseEntity<>(car, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/id/{id}")
     public ResponseEntity<Car> getCarByLicensePlateCar(@PathVariable Long id) throws Exception {
-        Car car = this.carService.findCarById(id);
+        Car car = this.carService.getCarById(id);
         return new ResponseEntity<>(car, HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/{licensePlateCar}")
+    @DeleteMapping(path = "/licensePlateCar/{licensePlateCar}")
     public ResponseEntity<Object> deleteCarByLicensePlateCar(@PathVariable String licensePlateCar) throws Exception {
-        Car car = this.carService.findCarByLicensePlateCar(licensePlateCar);
+        Car car = this.carService.getCarByLicensePlateCar(licensePlateCar);
         this.carService.delete(car);
         return ResponseEntity.status(HttpStatus.OK).body("Carro excluído com sucesso");
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/id/{id}")
     public ResponseEntity<Object> deleteCarById(@PathVariable Long id) throws Exception {
-        Car car = this.carService.findCarById(id);
+        Car car = this.carService.getCarById(id);
         this.carService.delete(car);
         return ResponseEntity.status(HttpStatus.OK).body("Carro excluído com sucesso");
     }
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<Car> updateCar(@PathVariable Long id, @RequestBody @Valid CarDTO carDto) throws Exception {
-        Car car = this.carService.findCarById(id);
+        Car car = this.carService.getCarById(id);
 
         car.setBrandCar(carDto.brandCar());
         car.setColorCar(carDto.colorCar());
