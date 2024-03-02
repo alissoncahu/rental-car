@@ -5,7 +5,6 @@ import com.api.rentalcar.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
